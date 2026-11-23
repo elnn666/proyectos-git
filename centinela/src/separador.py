@@ -1,8 +1,19 @@
-linea = "Nov 20 03:10:00 servidor sshd[1300]: Failed password for root from 203.0.113.77 port 41300 ssh2"
+with open("logs/auth_ejemplo.log", encoding="utf-8") as archivo:
+    lineas = archivo.readlines()
 
-partes = linea.split()
+for linea in lineas:
+    partes = linea.split()
+    print(partes[2],  partes[5], partes[8], partes[10])
 
-print(partes)
-print(partes[2])
-print(partes[8])
-print(partes[10])
+fallidos = {}
+correctos = {}
+
+for linea in lineas:
+    ip = linea.split()[10]
+    if "Failed" in linea:
+        fallidos[ip] = fallidos.get(ip, 0) + 1
+    else:
+        correctos[ip] = correctos.get(ip, 0) + 1
+
+print("Fallidos:", fallidos)
+print("Correctos:", correctos)
