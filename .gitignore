@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Resultados generados por los programas (no se suben)
+**/salida/*
+!**/salida/.gitkeep
+*.db
+
+# Secretos: nunca se suben
+.env
